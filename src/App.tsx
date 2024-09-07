@@ -3,15 +3,18 @@ import { useState } from 'react'
 export const App = () => {
   const [word, setWord] = useState('')
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setWord(event.target.value)
+  }
+
   const reverseString = (str: string) => {
     return str.split('').reverse().join('')
   }
 
   const check = () => {
-    const value = word
-    const reverse = reverseString(value)
+    const reverse = reverseString(word)
 
-    if (value === reverse) {
+    if (word === reverse) {
       alert('P A L I N D R O M E')
     } else {
       alert('Not today!')
@@ -28,7 +31,7 @@ export const App = () => {
         type='text'
         placeholder='Type something'
         value={word}
-        onChange={(event) => setWord(event.target.value)}
+        onChange={handleChange}
       />
 
       <button onClick={check}>Check</button>
